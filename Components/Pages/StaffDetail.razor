@@ -1,0 +1,10 @@
+@page "/staffDetails/{Id:int}"
+@inherits StaffDetailBase
+@rendermode InteractiveServer
+
+@if(Staff ==null){
+    <div class="spinner">abcde</div>
+}
+else{
+<h1>@Staff.LastName</h1>
+}

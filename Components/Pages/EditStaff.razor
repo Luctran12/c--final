@@ -1,0 +1,55 @@
+@page "/editstaff/{Id:int}"
+@inherits BlazorApp.Components.Base.EditStaffBase
+@rendermode InteractiveServer
+
+<h3>Edit Employee</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@if (Employee == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="@Employee" OnValidSubmit="UpdateEmployeeAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label for="firstName">First Name:</label>
+            <InputText id="firstName" @bind-Value="Employee.FirstName" />
+        </div>
+        
+        <div>
+            <label for="lastName">Last Name:</label>
+            <InputText id="lastName" @bind-Value="Employee.LastName" />
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <InputText id="email" @bind-Value="Employee.Email" />
+        </div>
+
+        <div>
+            <label for="startingDate">Starting Date:</label>
+            <InputDate id="startingDate" @bind-Value="Employee.StartingDate" />
+        </div>
+
+        <div>
+            <label for="genderId">Gender ID:</label>
+            <InputNumber id="genderId" @bind-Value="Employee.GenderId" />
+        </div>
+
+        <div>
+            <label for="departmentId">Department ID:</label>
+            <InputNumber id="departmentId" @bind-Value="Employee.DepartmentId" />
+        </div>
+
+        <button type="submit">Save</button>
+        <button type="button" @onclick="NavigateBack">Cancel</button>
+    </EditForm>
+}
